@@ -1,0 +1,98 @@
+---
+
+---
+
+  <div class="cool-text-container">
+      <div class="text-wrapper">
+          <p class="small-text-left">welcome to the</p>
+          <h1>
+              <span class="animated-gradient-text">Pro</span>ject 
+              <span class="animated-gradient-text"> a </span>
+              <span class="animated-gradient-text">Mo</span>nth
+          </h1>
+          <p class="small-text-right">initiative</p>
+      </div>
+      <a href="#about" class="scroll-down">
+        <svg height="25" width="130" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="m2 2 58.738 15.929a1 1 0 0 0 .524 0L120 2" stroke-linecap="round" stroke-width="3"></path>
+        </svg>
+    </a>
+  </div>
+
+  <style>
+    
+  .cool-text-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      margin-top: 10vh;
+      margin-left: auto; 
+      margin-right: auto; 
+    }
+    
+    .text-wrapper {
+      text-align: left;
+      display: inline-block;
+    }
+    
+    h1 {
+      color: #C2BAC1;
+      font-size: 11vw;
+      font-weight: bold;
+    }
+    
+    .small-text-left {
+      color: #486C88; 
+      font-size: 3vw;
+      margin-bottom: -4vw; 
+      font-weight: bold;
+      font-style: italic; 
+    }
+    
+    .small-text-right {
+      color: #486C88; 
+      font-size: 3vw;
+      align-self: flex-end;
+      text-align: right;
+      margin-top: -4vw; 
+      font-weight: bold;
+      font-style: italic; 
+    }
+
+  .animated-gradient-text {
+      background: linear-gradient(60deg, red, purple, red);
+      background-size: 200% auto;
+      color: #fff;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradient 12s linear infinite; 
+    }
+    
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .scroll-down {
+      display: block;
+      text-align: center;
+      margin-top: 10vh;
+      color: #C2BAC1; 
+      text-decoration: none;
+      transition: transform 0.3s ease;
+    }
+
+    .scroll-down:hover {
+      transform: scaleX(1.2);
+    }
+
+    .scroll-down svg {
+      stroke: currentColor;
+    }
+  </style>
+
+
+

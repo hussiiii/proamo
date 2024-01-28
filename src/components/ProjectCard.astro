@@ -1,0 +1,79 @@
+---
+// Define the TypeScript interface for props (optional, if you're using TypeScript)
+interface ProjectCardProps {
+  month: string;
+  projectName: string;
+  projectDescription: string;
+  projectImage: string;
+  githubLink: string;
+}
+
+// Define the props your component accepts
+const { month, projectName, projectDescription, projectImage, githubLink } = Astro.props as ProjectCardProps;
+---
+
+<div class="project-card">
+  <div class="card-header">
+    <div class="month">{month}</div>
+    <a href={githubLink} target="_blank" rel="noopener noreferrer">
+      <img src="/github-mark.svg" alt="Github logo" class="github-logo"/>
+    </a>
+  </div>
+  <div class="project-name">{projectName}</div>
+  <div class="project-description">{projectDescription}</div>
+  <img src={projectImage} alt={projectName} class="project-image"/>
+</div>
+
+<style>
+  .project-card {
+    border: 3px solid rgb(119, 156, 171); 
+    border-radius: 10px;
+    padding: 15px;
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s;
+  }
+
+  .project-card:hover {
+    transform: scale(1.05); /* Grow the card a little */
+  }
+
+  .card-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .month {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: rgb(119, 156, 171); 
+  }
+
+  .github-logo {
+    height: 30px; /* Adjust size as needed */
+    width: auto;
+  }
+
+  .project-name {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+    color: rgb(119, 156, 171); 
+  }
+
+  .project-description {
+    margin-bottom: 10px;
+    color: #486C88; 
+  }
+
+  .project-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px; /* Optional: for rounded corners */
+  }
+</style>

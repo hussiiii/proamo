@@ -1,0 +1,71 @@
+---
+import Layout from '../layouts/Layout.astro';
+import NavBar from "../components/NavBar.astro";
+import '../styles/global.css'
+import CoolText from '../components/CoolText.astro'
+import About from '../components/About.astro'
+import Projects from '../components/Projects.astro'
+import Contact from '../components/Contact.astro'
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="stylesheet" href="../styles/global.css" />
+		<title>homepage</title>
+	</head>
+	<body>
+		<div class="home-screen">
+			<NavBar></NavBar>
+			<CoolText></CoolText>
+		</div>
+		<div class="about">
+			<About></About>
+		</div>
+
+		<Projects></Projects>
+		<Contact></Contact>
+		<slot />
+	</body>
+</html>
+
+
+<style>
+	
+	html {
+		scroll-behavior: smooth;
+	}
+	body {
+		background-color: #294F6D;
+	}
+	
+	body::-webkit-scrollbar {
+	width: 10px; 
+	}
+
+	body::-webkit-scrollbar-track {
+	background: #294F6D;
+	}
+
+	body::-webkit-scrollbar-thumb {
+	background: rgb(119, 156, 171); 
+	border-radius: 20px;
+	}
+
+	body::-webkit-scrollbar-thumb:hover {
+	background: rgb(119, 170, 171); 
+	}
+
+	.home-screen {
+		height: 100vh;
+		overflow: hidden;
+		margin-bottom: 12em;
+	}
+
+
+</style>

@@ -1,0 +1,78 @@
+---
+---
+
+<div id="contact" class="contact-container">
+    <h1 class="contact-title">Contact</h1>
+    <div class="contact-links">
+        <div class="link-container">
+            <img src="/mail.png" alt="Email">
+            <a href="mailto:husali@ucdavis.edu">husali@ucdavis.edu</a>
+        </div>
+        <div class="link-container">
+            <img src="/github-mark.svg" alt="GitHub">
+            <a href="https://github.com/hussiiii">hussiiii</a>
+        </div>
+        <div class="link-container">
+            <img src="/linkedin.png" alt="LinkedIn">
+            <a href="https://linkedin.com/in/hussainalireal">Hussain Ali</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .contact-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 70%;
+      border-radius: 60px;
+      margin: 0 auto; /* centers horizontally */
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%); /* centers vertically */
+    }
+  
+    .contact-title {
+      color: #C2BAC1; 
+      font-weight: bold; 
+      text-align: left;
+      border-bottom: 8px solid black;
+      font-size: 3em;
+      padding: 20px;
+      margin-bottom: 1em;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .link-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .contact-links a {
+      font-size: 1.5em;
+      text-decoration: underline;
+      color: rgb(119, 156, 171); 
+      margin-left: 5px;
+      transition: color 0.3s ease;
+    }
+
+    .contact-links a:hover {
+      color: rgb(0, 123, 255); /* Color on hover */
+    }
+
+    .contact-links img {
+      width: 30px;
+      height: 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+    .contact-links {
+      flex-direction: column; /* Change to a column layout */
+    }
+  }
+</style>

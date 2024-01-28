@@ -1,0 +1,59 @@
+---
+import ProjectCard from './ProjectCard.astro'
+---
+<div id = "projects" class="projects-container">
+    <h1 class="projects-title">Projects</h1>
+    <div class="projects-grid">
+      <ProjectCard 
+          month="January" 
+          projectName="Project a Month Website" 
+          projectDescription="This website!" 
+          projectImage="/pic.jpg" 
+          githubLink="https://github.com/myproject" 
+      />
+      <ProjectCard 
+          month="Febuary" 
+          projectName="???" 
+          projectDescription="?????" 
+          projectImage="/question-mark.png" 
+          githubLink="https://github.com/myproject" 
+      />
+
+  </div>
+</div>
+
+<style>
+.projects-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 70%;
+  border-radius: 60px;
+  margin: 0 auto; 
+  margin-bottom: 12em;
+  position: relative;
+}
+
+.projects-title {
+  color: #C2BAC1; 
+  font-weight: bold; 
+  text-align: left;
+  border-bottom: 8px solid black;
+  font-size: 3em;
+  padding: 20px;
+  margin-bottom: 1em;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media screen and (max-width: 992px) {
+    .projects-grid {
+      grid-template-columns: 1fr; /* Change to a one column grid */
+    }
+  }
+
+</style>
