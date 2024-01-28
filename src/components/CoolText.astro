@@ -6,9 +6,13 @@
       <div class="text-wrapper">
           <p class="small-text-left">welcome to the</p>
           <h1>
-              <span class="animated-gradient-text">Pro</span>ject 
-              <span class="animated-gradient-text"> a </span>
-              <span class="animated-gradient-text">Mo</span>nth
+            <div>
+              <span><span class="animated-gradient-text">Pro</span>ject</span>
+              <span class="animated-gradient-text">a</span>&nbsp;
+            </div>
+            <div>
+              <span><span class="animated-gradient-text">Mo</span>nth</span>
+            </div>
           </h1>
           <p class="small-text-right">initiative</p>
       </div>
@@ -40,6 +44,10 @@
       color: #C2BAC1;
       font-size: 11vw;
       font-weight: bold;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
     }
     
     .small-text-left {
@@ -92,6 +100,22 @@
     .scroll-down svg {
       stroke: currentColor;
     }
+
+    @media (max-width: 992px) {
+    h1 {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 15vw;
+    }
+
+    .small-text-left, .small-text-right {
+      display: block;
+      text-align: center;
+      font-size: 5vw; 
+    }
+  }
   </style>
 
 
