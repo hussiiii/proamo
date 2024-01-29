@@ -1,0 +1,63 @@
+---
+import NavBar from "../../components/NavBar.astro";
+import '../../styles/global.css'
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="stylesheet" href="../styles/global.css" />
+		<title>Project Page</title>
+	</head>
+	<body>
+		<NavBar></NavBar>
+		<div class="content">
+			<h1 class="title">Title</h1>
+			<p class="description">This is a brief description of the project.</p>
+		</div>
+	</body>
+</html>
+
+<style>
+
+html {
+		scroll-behavior: smooth;
+	}
+	body {
+		background-color: #294F6D;
+	}
+	
+	body::-webkit-scrollbar {
+	width: 10px; 
+	}
+
+	body::-webkit-scrollbar-track {
+	background: #294F6D;
+	}
+
+	body::-webkit-scrollbar-thumb {
+	background: rgb(119, 156, 171); 
+	border-radius: 20px;
+	}
+
+	body::-webkit-scrollbar-thumb:hover {
+	background: rgb(119, 170, 171); 
+	}
+    
+	.title {
+		font-size: 3em;
+		text-align: left;
+		padding: 20px;
+	}
+
+	.description {
+		font-size: 1.5em;
+		text-align: left;
+		padding: 20px;
+	}
+</style>

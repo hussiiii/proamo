@@ -5,26 +5,28 @@ interface ProjectCardProps {
   projectName: string;
   projectDescription: string;
   projectImage: string;
-  githubLink: string;
+  url: string; 
 }
 
 // Define the props your component accepts
-const { month, projectName, projectDescription, projectImage, githubLink } = Astro.props as ProjectCardProps;
+const { month, projectName, projectDescription, projectImage, url } = Astro.props as ProjectCardProps;
 ---
-
-<div class="project-card">
-  <div class="card-header">
-    <div class="month">{month}</div>
-    <a href={githubLink} target="_blank" rel="noopener noreferrer">
-      <img src="/github-mark.svg" alt="Github logo" class="github-logo"/>
-    </a>
+<a href={url}>
+  <div class="project-card">
+    <div class="card-header">
+      <div class="month">{month}</div>
+    </div>
+    <div class="project-name">{projectName}</div>
+    <div class="project-description">{projectDescription}</div>
+    <img src={projectImage} alt={projectName} class="project-image"/>
   </div>
-  <div class="project-name">{projectName}</div>
-  <div class="project-description">{projectDescription}</div>
-  <img src={projectImage} alt={projectName} class="project-image"/>
-</div>
+</a>
+
+
+
 
 <style>
+
   .project-card {
     border: 3px solid rgb(119, 156, 171); 
     border-radius: 10px;
