@@ -30,6 +30,12 @@ import '../../styles/global.css'
 				</div>
 			</div>
 			<hr class="line"/>
+			<p class="basic-text">I choose astro to make this website in mainly due to its performance. It strips out unused JS and only uses what it needs to. This makes it ideal for primarily static sites (like this one). Also, it offers incredibly flexibility: you can use components from any framework you want, be it React, Vue, Angular, Svelete, or even all of them at the same time, if you want. </p>
+			<img src="/website/performance.png" alt="Project Image" class="basic-image"/>
+			<p class="basic-text">I actually did not use any other framework besides Astro to make this site in, though. Originally, I was planning on using React components, and only have one main index.astro page written in Astro, but as far as I can tell an Astro file can do everything a .tsx can (at least when it comes to content/styling). I actually created the NavBar component initially in React, before rewriting it in Astro literally just to see if I could.  </p>
+			<img src="/website/reactnav.png" alt="Project Image" class="basic-image"/>
+			<img src="/website/astronav.png" alt="Project Image" class="basic-image"/>
+			<p class="basic-text">When it comes to the file structure of this website, I tried my best to follow the industry standard style of splitting up reusable elements into components and putting all of those in a folder, then having a "pages" folder where the actual content/components would go. I also have a "projects" folder that will eventually contain exactly 12 files: the corresponding breakdown page of each project, for each month. Right now you're viewing src/pages/projects/website.astro. </p>
 		</div>
 	</body>
 </html>
@@ -72,10 +78,16 @@ import '../../styles/global.css'
 	.tech-stack {
 	  display: flex;
 	  align-items: center; 
-	  font-size: 1.5vw;
+	  font-size: 1.2em;
 	  padding: 10px;
 	  margin-left: 6vw; 
 	  margin-bottom: 3vw; 
+	}
+
+	.tech-stack-list {
+		display: flex;
+  		flex-wrap: wrap; /* Allow items to wrap */
+ 	 	gap: 10px; /* Provide space between items */
 	}
 
 	.tech-item {
@@ -102,6 +114,28 @@ import '../../styles/global.css'
 		margin: 0 auto; /* Center the line */
 		margin-bottom: 3vw; 
 	}
+
+	.basic-text {
+		font-size: 1.2em; 
+		color: #C2BAC1; 
+		margin-left: 8vw; 
+		margin-right: 8vw; 
+		margin-bottom: 3vw; 
+	}
+
+	.basic-image {
+	  border-radius: 10px;
+	  margin-left: auto;
+	  margin-right: auto;
+	  margin-bottom: 3vw; 
+	  width: 75%;
+	}
+
+	@media screen and (max-width: 700px) {
+    .tech-stack {
+      font-size: 1em; 
+    }
+  }
 
 html {
 		scroll-behavior: smooth;
