@@ -36,6 +36,9 @@ import '../../styles/global.css'
 			<img src="/website/reactnav.png" alt="Project Image" class="basic-image"/>
 			<img src="/website/astronav.png" alt="Project Image" class="basic-image"/>
 			<p class="basic-text">When it comes to the file structure of this website, I tried my best to follow the industry standard style of splitting up reusable elements into components and putting all of those in a folder, then having a "pages" folder where the actual content/components would go. I also have a "projects" folder that will eventually contain exactly 12 files: the corresponding breakdown page of each project, for each month. Right now you're viewing src/pages/projects/website.astro. </p>
+			<p class="basic-text">If noticed something off about the way I structured the project, you're not alone; there's actually a better way to structure the pages, specifically the project pages, so that instead of 12 seperate pages for each project, there's only 1. The way you would do it would be to create one singular page component containing the blueprint of the structure and styling, and then pass the project-specific props into it. Like for example, a title prop, description, image, tech stack, and then a series of 'p' and 'img' tags. This works because all these project pages follow the same structure. Now to be honest I'm not entirely sure it would work, but I think it would because I did something similar for the project card component.  </p>
+			<img src="/website/props.png" alt="Project Image" class="basic-image"/>
+			<p class="basic-text">There's only 1 ProjectCard file, not 12. So theoretically, following the same principle, I should be able to have it so that there's only 1 ProjectPage, not 12. The only thing is, the project pages will most likely have a different number of 'img' and 'p' tags, and in a different order, so the pages follow the same general structure, not the same exact structure. One idea for getting around this would be to pass an array of content blocks as a prop, where each block defines the type (paragraph, image, etc.) and its content, then iterate over the blocks and render each block based on its type. I'll most likely attempt to refactor the project pages in this way later on. </p>
 		</div>
 	</body>
 </html>
@@ -45,6 +48,7 @@ import '../../styles/global.css'
 
 
 <style>
+
 
 .title {
 	  color: #C2BAC1; 
