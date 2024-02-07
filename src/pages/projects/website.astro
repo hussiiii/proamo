@@ -1,6 +1,8 @@
 ---
 import NavBar from "../../components/NavBar.astro";
 import '../../styles/global.css'
+import Contact from "../../components/Contact.astro";
+
 ---
 
 <!doctype html>
@@ -39,6 +41,14 @@ import '../../styles/global.css'
 			<p class="basic-text">If noticed something off about the way I structured the project, you're not alone; there's actually a better way to structure the pages, specifically the project pages, so that instead of 12 seperate pages for each project, there's only 1. The way you would do it would be to create one singular page component containing the blueprint of the structure and styling, and then pass the project-specific props into it. Like for example, a title prop, description, image, tech stack, and then a series of 'p' and 'img' tags. This works because all these project pages follow the same structure. Now to be honest I'm not entirely sure it would work, but I think it would because I did something similar for the project card component.  </p>
 			<img src="/website/props.png" alt="Project Image" class="basic-image"/>
 			<p class="basic-text">There's only 1 ProjectCard file, not 12. So theoretically, following the same principle, I should be able to have it so that there's only 1 ProjectPage, not 12. The only thing is, the project pages will most likely have a different number of 'img' and 'p' tags, and in a different order, so the pages follow the same general structure, not the same exact structure. One idea for getting around this would be to pass an array of content blocks as a prop, where each block defines the type (paragraph, image, etc.) and its content, then iterate over the blocks and render each block based on its type. I'll most likely attempt to refactor the project pages in this way later on. </p>
+			<p class="basic-text">One last thing I'd like to touch on is the concept of Astro Islands, which is basically an interactive UI component on the page, with each island running in isolation from the others. It's this feature that allows Astro to support other UI frameworks like React, Angular, etc. </p>
+			<img src="/website/islands.png" alt="Project Image" class="basic-image">
+			<p class="basic-text">The benefits include performance (of course), since each component does something called "parallel loading", in which components will render in parallel instead of waiting for one to finish first. In the illustration above, for instance, the image carousel (low priority) doesn't block the header (high priority), which means the header loads immediately without having to wait for the carousel to load first</p>
+			<p class="basic-text">I unfortunately did not have a chance to play around with islands, mainly because I didn't really need to but also because I ran out of time for January and I really want to stick to schedule. However, I do plan on updating the site to add small things as I work on projects for the other months, so hopefully I can play around with islands more at that time.</p>
+			<p class="basic-text">Well, that's about it for now. See ya in February!</p>
+		</div>
+		<div class="contact">
+			<Contact></Contact>
 		</div>
 	</body>
 </html>
@@ -135,11 +145,22 @@ import '../../styles/global.css'
 	  width: 75%;
 	}
 
+	.contact {
+		margin-top: 10em; 
+	}
+
 	@media screen and (max-width: 700px) {
     .tech-stack {
       font-size: 1em; 
     }
   }
+
+  @media screen and (max-width: 700px) {
+    .basic-image {
+      width:100%;
+    }
+  }
+
 
 html {
 		scroll-behavior: smooth;
