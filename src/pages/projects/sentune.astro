@@ -1,0 +1,196 @@
+---
+import NavBar from "../../components/NavBar.astro";
+import '../../styles/global.css'
+import Contact from "../../components/Contact.astro";
+import NoWorkResult from "postcss/lib/no-work-result";
+import { createAnimationScope } from "astro:transitions";
+import type { isTransitionBeforePreparationEvent } from "astro:transitions/client";
+import type { Simulate } from "react-dom/test-utils";
+
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="stylesheet" href="../styles/global.css" />
+		<title>Project Page</title>
+	</head>
+	<body>
+		<NavBar></NavBar>
+		<div class="content">
+			<h1 class="title">Sentune</h1>
+			<p class="description">Control your music with your emotions</p>
+			<img src="/sentune.png" alt="Project Image" class="image"/>
+			<div class="tech-stack">
+				<h2 class="tech-stack-title">Tech Stack:</h2>
+				<div class="tech-stack-list">
+					<span class="tech-item">OpenCV</span>
+					<span class="tech-item">DeepFace</span>
+					<span class="tech-item">Python</span>
+					<!-- Add more tech items as needed -->
+				</div>
+			</div>
+			<hr class="line"/>
+			<p class="basic-text">Confession: this project was completed in May, not April. Sorry! April was super super busy for me and I really wanted to complete a computer vision project during that month but just didn't have the time. But don't worry, even though I did this project in May this won't take away from the actual project I have planned for May, so that'll release shortly as scheduled. But alright, let's get into the actual project itself!</p>
+			<p class="basic-text">Having computer vision skills is really sought after these days; I would say about 1 in every 4 CS internships I've looked at have some computer vision/OpenCV requirement. But what exactly is computer vision? Well, there are research papers and articles that are thousands of pages long that aim to answer that very question, so I'll keep it brief here. Computer vision is the ability of computers to recognize and extract data from objects in images and videos. It's a lot like human vision, really, except computers are a lot worse at it.</p>
+			<img src="/sentune/computervision.png" alt="Project Image" class="basic-image"/>
+			<p class="basic-text">The main difference between computer vision and human vision is that as humans, we can draw upon prior experiences and memories to help us interperet what we see, while computers cannot. Instead, they have to rely on things like machine learning, deep learning, and neural networks. </p>
+			<p class="basic-text">Alright, so now what's OpenCV? It stands for Open Source Computer Vision, and it's a huge library consisting of thousands of algorithms and functions to perform common computer vision and ML tasks. So you can do a lot of cool CV stuff right out of the box. For instance if I need to compute optical flow, blur an image, or compute an essential matrix I can do that with OpenCV right away, because it has functions for it! It's also completely free to use, which is always a bonus. It's no wonder that it's the CV and ML toolbox of choice for many well known companies and up-and-coming startups. </p>
+			<p class="basic-text">Alright so that's enough background... let's talk about Sentune now! So Sentune is meant to be a program to control your music (specifically Spotify) with your facial expressions. So smiling will pause/play the song, pouting/frowning will go the previous song, and opening your mouth slightly will go to the next song. Originally, I actually wanted to use holding up a certain amount of fingers to achieve this: like 5 fingers means pause/play, 4 means skip to the next song, etc. And I actually got pretty far with this approach!</p>
+			<img src="/sentune/contours.png" alt="Project Image" class="basic-image"/>
+			<p class="basic-text">I used a bunch of built-in OpenCV functions to grayscale, blur, and further optimize the image for algorithm processing, then used another OpenCV function to extract the contours from the image, which I then performed a series of calculations on to determine how many fingers were being held up. After a lot of testing and tweaking, though, I found that my approach was far too simple and although it worked sometimes (for instance, the song would pause when I held up 5 fingers), it needed a lot more refining to work the way I wanted. But this project was already delayed enough as is, so I switched to facial expressions controlling the music as opposed to hand gestures. </p>
+			<p class="basic-text">To do this, I used DeepFace, a popular open-source facial recogniton library. They have an analyze() function that can detect age, gender, race, and facial expressions, so I used the facial expression one to get the dominant emotion of the current frame (happy, sad, disgust, fear, suprise, or anger). </p>
+			<img src="/sentune/emotion.png" alt="Project Image" class="basic-image"/>
+			<p class="basic-text">The rest of the script is quite straighforward: if the dominant emotion is happy, then simulate pressing space on the keyboard (to pause/play the current song), if the emotion is sad, then simulate pressing F8 to go to the previous song, and finally if the emotion is suprise then simulate pressing F11 to skip to the next song. And that's pretty much it! Now just open Spotify and run the script! </p>
+			<p class="basic-text">Now though it works, it's far from perfect. One issue I've faced is that sometime the emotion detection will rapidly change between emotions for a few seconds before stabilizing. So for instance, when I smile, the emotion will rapdily change from Happy to Fear to Neutral, before settling on Happy, so the song will pause/play multiple times. To get around this issue, I simply ignore any rapid changes in emotion detection, and only act on the emotion that has been stable for the longest amount of time, by creating a counter and incrementing it for every frame the current emotion has been stable for. </p>
+			<img src="/sentune/stable.png" alt="Project Image" class="basic-image"/>
+			<p class="basic-text">Another issue is that the facial expression detection is different for everyone. For instance, when I smile, the algorithm detects it as Happy almost always, but when my friend tested it, it would flip between Happy and Fear. To fix this issue, I would probably need to add some feature in the beginning to allow the current user to fine-tune the DeepFace algorithm on their own facial expressions so that the model is more accurate for them. Like if this were a desktop app for instance, when it's first downloaded and launched simply add a set up screen that will prompt the user with an emotion and have them make that facial expression, then save these and use them to train the DeepFace model. Another possible solution could be to consider the top 2 most dominant emotions instead of just the most dominant, so if the alagorithm is flipping between two (like Happy and Fear), it would still treat it as though it is Happy. </p>
+			<p class="basic-text">All things considered I'm really happy with how this project has turned out, as I accomplished what I set out to do: familiarize myself with the basics of computer vision and OpenCV, and create a working project to solve some need. I've always been annoyed with using Spotify on my laptop because I feel like it disrupts the flow of things when I have to stop what I'm doing to open it up and manually select the next song I want to listen to. Now I can simply open my mouth slightly (which the algorithm will recognize as Surprise) to skip the song without having to click anything! For next steps, I would like to actually integrate Spotify's API into the script so that it has access to even more features besides just play/pause and skip. It would be cool to integrate a feature that would play a random song from the user's playlists depending on their current emotion (for example, if Sad then play a song with the melodic rap genre, if neutral play classical music, etc). The possibilities are endless, and I'll definitely be playing around with this in the future!</p>
+
+			<p class="basic-text">Well, that's about it for now. See ya in May!</p>
+		</div>
+		<div class="contact">
+			<Contact></Contact>
+		</div>
+	</body>
+</html>
+
+
+
+
+
+<style>
+
+
+.title {
+	  color: #C2BAC1; 
+      font-weight: bold; 
+      text-align: left;
+      font-size: 3em;
+      padding: 10px;
+	  margin-top: 6vw;
+	  margin-left: 6vw;
+	}
+
+	.description {
+	  color: #C2BAC1; 
+	  font-weight: bold;
+      text-align: left;
+      font-size: 1.2em;
+      padding: 20px;
+	  margin-left: 6vw;
+	}
+
+	.image {
+	  border-radius: 10px;
+	  display: block;
+	  margin-left: auto;
+	  margin-right: auto;
+	  margin-bottom: 3vw; 
+	  width: 50%;
+	  height: auto;
+	}
+
+	.tech-stack {
+	  display: flex;
+	  align-items: center; 
+	  font-size: 1.2em;
+	  padding: 10px;
+	  margin-left: 6vw; 
+	  margin-bottom: 3vw; 
+	}
+
+	.tech-stack-list {
+		display: flex;
+  		flex-wrap: wrap; /* Allow items to wrap */
+ 	 	gap: 10px; /* Provide space between items */
+	}
+
+	.tech-item {
+		margin-right: 10px;
+		color: #C2BAC1; 
+		background-color: transparent;
+		border: 2px solid pink;
+		border-radius: 50px;
+		padding: 5px 15px;
+	}
+
+	.tech-stack-title {
+	  margin-right: 10px;
+	  color: #C2BAC1; 
+	  font-weight:bold;
+	  font-size: 1.2em;
+	}
+
+	.line {
+		width: 85%; /* Adjust to your preference */
+		border: 0;
+		height: 2px;
+		background: #486C88; 
+		margin: 0 auto; /* Center the line */
+		margin-bottom: 3vw; 
+	}
+
+	.basic-text {
+		font-size: 1.2em; 
+		color: #C2BAC1; 
+		margin-left: 8vw; 
+		margin-right: 8vw; 
+		margin-bottom: 3vw; 
+	}
+
+	.basic-image {
+	  border-radius: 10px;
+	  margin-left: auto;
+	  margin-right: auto;
+	  margin-bottom: 3vw; 
+	  width: 75%;
+	}
+
+	.contact {
+		margin-top: 10em; 
+	}
+
+	@media screen and (max-width: 700px) {
+    .tech-stack {
+      font-size: 1em; 
+    }
+  }
+
+  @media screen and (max-width: 700px) {
+    .basic-image {
+      width:100%;
+    }
+  }
+
+
+html {
+		scroll-behavior: smooth;
+	}
+	body {
+		background-color: #294F6D;
+	}
+	
+	body::-webkit-scrollbar {
+	width: 10px; 
+	}
+
+	body::-webkit-scrollbar-track {
+	background: #294F6D;
+	}
+
+	body::-webkit-scrollbar-thumb {
+	background: rgb(119, 156, 171); 
+	border-radius: 20px;
+	}
+
+	body::-webkit-scrollbar-thumb:hover {
+	background: rgb(119, 170, 171); 
+	}
+    
+</style>
